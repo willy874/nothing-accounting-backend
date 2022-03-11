@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  backend:
+    build: .
+    command: "npm run watch"
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    networks:
+      - backend
+  
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: accounting_dev
+    networks:
+      - backend
+
+networks:
+  backend:
