@@ -1,5 +1,5 @@
 const express = require("express");
-// const passport = require("passport");
+const passport = require("passport");
 const UserController = require("../controllers/UserController");
 
 const router = express.Router();
@@ -9,6 +9,10 @@ const router = express.Router();
 //   res.send("respond with a resource");
 // });
 
-router.post("/", UserController.authenticateUser);
+router.post(
+  "/",
+  passport.authenticate("local"),
+  UserController.authenticateUser
+);
 
 module.exports = router;

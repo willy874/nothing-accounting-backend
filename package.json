@@ -9,7 +9,10 @@
     "server": "babel-node ./src/bin/www",
     "dev": "NODE_EV=development npm-run-all server",
     "watch": "nodemon",
-    "lint": "eslint --ext .js ."
+    "lint": "eslint src/* --ext .js --no-error-on-unmatched-pattern"
+  },
+  "prisma":{
+    "seed": "node prisma/seed.js"
   },
   "author": "",
   "license": "ISC",

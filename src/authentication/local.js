@@ -6,9 +6,14 @@ const authUtils = require("./utils");
 const prisma = new PrismaClient.PrismaClient();
 const { Strategy } = passportLocal;
 
+const loginOptions = {
+  usernameField: "email",
+  passwordField: "password",
+};
+
 const passportInit = () => {
   passport.use(
-    new Strategy(async (email, password, done) => {
+    new Strategy(loginOptions, async (email, password, done) => {
       const user = await prisma.User.findFirst({
         where: {
           email,
@@ -16,9 +21,12 @@ const passportInit = () => {
       });
 
       if (user) {
-        if (authUtils.comparePassword(user.password, password)) {
+        if (await authUtils.comparePassword(user.password, password)) {
           return done(null, user);
         }
+        return done(null, false, {
+          message: "incorrect password",
+        });
       }
       return done(null, false, {
         message: "no user found",
