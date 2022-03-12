@@ -12,6 +12,7 @@ services:
       - db
     networks:
       - backend
+    env_file: .env
   
   db:
     image: postgres:14
