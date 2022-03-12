@@ -10,7 +10,7 @@ const router = express.Router();
 // });
 
 router.post(
-  "/",
+  "/login",
   passport.authenticate("local"),
   UserController.authenticateUser
 );
