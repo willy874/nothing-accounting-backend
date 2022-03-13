@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY ./package.json .
 
-COPY npm install
+RUN npm install
 
 USER node
 
