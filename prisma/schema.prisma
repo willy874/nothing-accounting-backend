@@ -37,8 +37,8 @@ model Item {
   id Int @id @default(autoincrement())
   user User @relation(fields: [user_id], references: [id])
   user_id Int
-  payment_type PaymentType @relation(fields: [payment_type_id], references: [id])
-  payment_type_id Int
+  payment_type PaymentType? @relation(fields: [payment_type_id], references: [id])
+  payment_type_id Int?
   transaction Transaction
   date DateTime
   memo String?
