@@ -38,4 +38,4 @@ jobs:
         run: npm run lint
       
       - name: build image
-        run: docker build -t willy874/nothing-accounting-backend:${{steps.vars.output.sha}} .
+        run: docker build -t willy874/nothing-accounting-backend:${{steps.vars.outputs.sha}} .
