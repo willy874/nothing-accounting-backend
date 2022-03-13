@@ -15,5 +15,59 @@ model User {
   email     String   @unique
   name      String?
   password  String
-  createdAt DateTime @default(now())
+  created_at DateTime @default(now())
+  payment_type PaymentType[]
+  item Item[]
+  category Category[]
+}
+
+model PaymentType {
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+  item Item[]
+}
+
+enum Transaction {
+  expense
+  earning
+}
+
+model Item {
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+  payment_type PaymentType @relation(fields: [payment_type_id], references: [id])
+  payment_type_id Int
+  transaction Transaction
+  date DateTime
+  memo String?
+  item_category ItemCategory[]
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+  sub_category SubCategory[]
+  item_category ItemCategory[]
+}
+
+model SubCategory {
+  id Int @id @default(autoincrement())
+  name String
+  category Category @relation(fields: [category_id], references: [id])
+  category_id Int
+  item_category ItemCategory[]
+}
+
+model ItemCategory {
+  id Int @id @default(autoincrement())
+  item Item @relation(fields: [item_id], references: [id])
+  item_id Int
+  category Category @relation(fields: [category_id], references: [id])
+  category_id Int
+  sub_category SubCategory @relation(fields: [sub_category_id], references: [id])
+  sub_category_id Int
 }
