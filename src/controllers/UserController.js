@@ -5,6 +5,7 @@ const authUtils = require("../authentication/utils");
 const prisma = new PrismaClient();
 
 const authenticateUser = async (req, res) => {
+  const a;
   res.send(`user authenticated: ${req.isAuthenticated()}`);
 };
 
