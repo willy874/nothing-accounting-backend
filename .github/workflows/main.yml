@@ -25,6 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: does it have docker
+        run: docker --version
+
+      - name: does it have npm
+        run: npm -v
+
+      - name: what is it's node version
+        run: node -v
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
