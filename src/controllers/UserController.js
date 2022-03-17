@@ -6,7 +6,7 @@ const authenticateUser = async (req, res) => {
 
 const createUser = async (req, res) => {
   const { body } = req;
-  if (UserService.createUser(body.email, body.password)) {
+  if (await UserService.createUser(body.email, body.password)) {
     res.json({message: 'user created'});
   } else {
     res.status(403).json({ message: "incorrect user info" });

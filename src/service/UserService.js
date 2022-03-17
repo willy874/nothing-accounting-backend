@@ -34,9 +34,9 @@ class UserService {
             validator.isEmail(email) &&
             validator.isLength(password, { min: 8 } && !user)
         ) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     };
 }
 
