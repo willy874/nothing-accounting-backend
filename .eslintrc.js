@@ -1,10 +1,11 @@
 module.exports = {
+  root: true,
   env: {
     node: true,
-    // commonjs: true,
+    commonjs: true,
     es2021: true,
   },
-  extends: ["airbnb-base", "prettier", "plugin:import/recommended"],
+  extends: ["airbnb-base", "prettier", "plugin:prettier/recommended"],
   parserOptions: {
     ecmaVersion: "latest",
   },
@@ -12,6 +13,11 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-unused-vars": ["error", { args: "none" }],
+    "no-unused-vars": [
+      "error",
+      {
+        args: "none",
+      },
+    ],
   },
 };

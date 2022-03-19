@@ -24,8 +24,8 @@ const userMain = () => {
       await prisma.User.create({ data: newUser });
     }
   });
-}
+};
 
 module.exports = {
-    userMain
-}
+  userMain,
+};

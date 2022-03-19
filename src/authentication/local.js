@@ -6,9 +6,7 @@ const authUtils = require("./utils");
 const prisma = new PrismaClient.PrismaClient();
 const { Strategy } = passportLocal;
 
-
 const newpassportStrategy = () => {
-
   const loginOptions = {
     usernameField: "email",
     passwordField: "password",
@@ -35,19 +33,15 @@ const newpassportStrategy = () => {
       });
     })
   );
-
-}
+};
 
 const passportSerializeUser = () => {
-
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
-
-}
+};
 
 const passportDeserializeUser = () => {
-
   passport.deserializeUser((id, done) => {
     const user = prisma.User.findFirst({
       where: {
@@ -56,15 +50,12 @@ const passportDeserializeUser = () => {
     });
     return done(null, user);
   });
-
-}
+};
 
 const passportInit = () => {
-
-  newpassportStrategy()
-  passportSerializeUser()
-  passportDeserializeUser()
-
+  newpassportStrategy();
+  passportSerializeUser();
+  passportDeserializeUser();
 };
 
 module.exports = {

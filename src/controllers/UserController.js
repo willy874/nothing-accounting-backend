@@ -1,4 +1,4 @@
-const {UserService} = require('../service/UserService')
+const { UserService } = require("../service/UserService");
 
 const authenticateUser = async (req, res) => {
   res.send(`user authenticated: ${req.isAuthenticated()}`);
@@ -7,7 +7,7 @@ const authenticateUser = async (req, res) => {
 const createUser = async (req, res) => {
   const { body } = req;
   if (await UserService.createUser(body.email, body.password)) {
-    res.json({message: 'user created'});
+    res.json({ message: "user created" });
   } else {
     res.status(403).json({ message: "incorrect user info" });
   }

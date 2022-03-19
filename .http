@@ -1,0 +1,20 @@
+POST  http://localhost:8080/users/create
+content-type: application/json
+
+{
+  "email": "willy8742891@gmail.com",
+  "password": "cpy775tw"
+}
+
+###
+
+POST  http://localhost:8080/users/login
+content-type: application/json
+
+{
+  "email": "willy8742891@gmail.com",
+  "password": "cpy775tw"
+}
+
+###
+
