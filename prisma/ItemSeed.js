@@ -16,17 +16,28 @@ const itemMain = async () => {
     },
   });
 
-  if (!user) {
-    items.forEach(async (item) => {
-      await prisma.Item.create({
-        data: {
-          user_id: user.id,
-          date: item.date,
-          transaction: "expense",
-        },
-      });
-    });
+  if (user) {
+    await Promise.all(
+      items.map(async (item) => {
+        await prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            items: {
+              create: [
+                {
+                  date: item.date,
+                  transaction: "expense",
+                },
+              ],
+            },
+          },
+        });
+      })
+    );
   }
+  console.log(await prisma.item.findMany());
 };
 
 module.exports = {

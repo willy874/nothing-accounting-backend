@@ -7,8 +7,6 @@ const logger = require("morgan");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const usersRouter = require("./routes/users");
-const HomeRouter = require("./routes/home");
 const localPassport = require("./authentication/local");
 
 const app = express();
@@ -48,8 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 localPassport.passportInit();
 
-app.use("/", HomeRouter);
-app.use("/users", usersRouter);
+app.use("/api", require("./routes/api/routes"));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
