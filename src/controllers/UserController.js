@@ -1,4 +1,3 @@
-const { PrismaClient } = require("@prisma/client");
 const { UserService } = require("../service/UserService");
 
 const authenticateUser = async (req, res, next) => {
