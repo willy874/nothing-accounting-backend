@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const UserController = require("../controllers/UserController");
+const IsAuthenticated = require("../middleware/IsAuthenticated");
 
 const router = express.Router();
 
@@ -12,8 +13,11 @@ const router = express.Router();
 router.post(
   "/login",
   passport.authenticate("local"),
+  IsAuthenticated.addIsAuthenticated,
   UserController.authenticateUser
 );
+
+router.get("/users", IsAuthenticated.isAuthenticated, UserController.getUsers);
 
 router.post("/create", UserController.createUser);
 

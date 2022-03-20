@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const usersRouter = require("./routes/users");
 const HomeRouter = require("./routes/home");
 const localPassport = require("./authentication/local");
@@ -26,12 +27,20 @@ app.use(
     extended: true,
   })
 );
-app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
     secret: "hello",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
+    cookie: { maxAge: 1800000 },
+  })
+);
+app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+    optionSuccessStatus: 200,
   })
 );
 

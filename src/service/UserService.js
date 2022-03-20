@@ -26,15 +26,9 @@ class UserService {
         email,
       },
     });
-    if (
-      validator.isEmail(email) &&
-      validator.isLength(
-        password,
-        {
-          min: 8,
-        } && !user
-      )
-    ) {
+    const isEmail = validator.isEmail(email);
+    const isLength = validator.isLength(password, { min: 8 });
+    if (isEmail && isLength && !user) {
       return false;
     }
     return true;

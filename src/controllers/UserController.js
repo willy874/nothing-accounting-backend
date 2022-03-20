@@ -1,6 +1,7 @@
+const { PrismaClient } = require("@prisma/client");
 const { UserService } = require("../service/UserService");
 
-const authenticateUser = async (req, res) => {
+const authenticateUser = async (req, res, next) => {
   res.send(`user authenticated: ${req.isAuthenticated()}`);
 };
 
@@ -13,7 +14,12 @@ const createUser = async (req, res) => {
   }
 };
 
+const getUsers = async (req, res) => {
+  return res.json({ hello: "hello" });
+};
+
 module.exports = {
   authenticateUser,
   createUser,
+  getUsers,
 };
