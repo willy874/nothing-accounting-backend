@@ -1,5 +1,5 @@
 const PrismaClient = require("@prisma/client");
-const authUtils = require("../src/authentication/utils");
+const authUtils = require("../../src/authentication/utils");
 
 const prisma = new PrismaClient.PrismaClient();
 

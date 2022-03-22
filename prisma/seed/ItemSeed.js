@@ -9,19 +9,31 @@ const items = [
   },
 ];
 
-const itemMain = async () => {
-  const user = await prisma.User.findFirst({
+const checkRequirement = async () => {
+  const category = await prisma.Category.findFirst({
     where: {
       id: 1,
     },
   });
 
-  if (user) {
+  const user = await prisma.User.findFirst({
+    where: {
+      id: 1,
+    },
+  });
+  if (!category && user) {
+    return true;
+  }
+  return false;
+};
+
+const itemMain = async () => {
+  if (checkRequirement()) {
     await Promise.all(
       items.map(async (item) => {
         await prisma.user.update({
           where: {
-            id: user.id,
+            id: 1,
           },
           data: {
             items: {
@@ -29,6 +41,9 @@ const itemMain = async () => {
                 {
                   date: item.date,
                   transaction: "expense",
+                  category: await prisma.Category.findFirst({
+                    where: { id: 1 },
+                  }).id,
                 },
               ],
             },
@@ -37,7 +52,6 @@ const itemMain = async () => {
       })
     );
   }
-  console.log(await prisma.item.findMany());
 };
 
 module.exports = {

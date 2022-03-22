@@ -5,8 +5,8 @@ const authUtils = require("../authentication/utils");
 const prisma = new PrismaClient();
 
 class UserService {
-  static async createUser(email, password) {
-    if (!(await this.validateCreateUser(email, password))) {
+  static async create(email, password) {
+    if (!(await this.validateCreate(email, password))) {
       return false;
     }
 
@@ -20,7 +20,7 @@ class UserService {
     return true;
   }
 
-  static async validateCreateUser(email, password) {
+  static async validateCreate(email, password) {
     const user = await prisma.user.findFirst({
       where: {
         email,
