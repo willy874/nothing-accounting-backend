@@ -41,9 +41,12 @@ const itemMain = async () => {
                 {
                   date: item.date,
                   transaction: "expense",
-                  category: await prisma.Category.findFirst({
-                    where: { id: 1 },
-                  }).id,
+                  itemCategory: {
+                    create: {
+                      categoryId: 1,
+                      subcategoryId: 1,
+                    },
+                  },
                 },
               ],
             },
@@ -52,6 +55,7 @@ const itemMain = async () => {
       })
     );
   }
+  console.log("item created");
 };
 
 module.exports = {

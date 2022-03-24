@@ -26,6 +26,7 @@ const userMain = async () => {
       }
     })
   );
+  console.log("user created");
 };
 
 module.exports = {

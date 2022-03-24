@@ -11,17 +11,18 @@ class ItemService {
       data: {
         items: {
           create: itemArray,
+          categoryItem: itemArray,
         },
       },
     });
   }
 
   static async edit(itemId, userId) {
-    const item = prisma.Item.findFirst({
-      where: {
-        id: itemId,
-      },
-    });
+    // const item = prisma.Item.findFirst({
+    //   where: {
+    //     id: itemId,
+    //   },
+    // });
   }
 }
 

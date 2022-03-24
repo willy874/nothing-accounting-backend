@@ -21,7 +21,7 @@ const checkRequirement = async () => {
 };
 
 const categoryMain = async () => {
-  if (!checkRequirement()) {
+  if (!(await checkRequirement())) {
     await prisma.User.update({
       where: {
         id: 1,
@@ -33,6 +33,7 @@ const categoryMain = async () => {
       },
     });
   }
+  console.log("category created");
 };
 
 module.exports = {
