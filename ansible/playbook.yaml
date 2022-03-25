@@ -1,0 +1,9 @@
+- hosts: all
+  become: yes
+
+  environment:
+    DOCKER_IMAGE_TAG: "{{ docker_image_tag }}"
+
+  tasks:
+  - import_task: tasks/backend_deploy.yaml
+    tags: [ deploy ]
