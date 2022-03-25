@@ -58,6 +58,5 @@ jobs:
         with:
           playbook: ansible/playbook.yaml
           key: ${{secrets.ssh_key}}
-          requirements: ansible/requirements.yaml
           options: |
             --extra-vars docker_image_tag=${{steps.vars.output.sha}}
