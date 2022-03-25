@@ -13,7 +13,9 @@
     chdir: "{{ repo_dir }}"
   ignore_errors: yes
 
-- name: docker-compose up
-  command: docker-compose -f docker-compose.yaml -f docker-compose.production.yaml
+- name: docker-compose up -d
+  command: docker-compose -f docker-compose.yaml -f docker-compose.production.yaml up -d
   args:
     chdir: "{{ repo_dir }}"
+  environment:
+    docker_image_tag: "{{ docker_image_tag }}"

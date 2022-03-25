@@ -1,5 +1,5 @@
 app_user: surfer
 
 repo_url: https://github.com/willy874/nothing-accounting-backend.git
-repo_dir: ~/nothing-accounting-backend
+repo_dir: /home/surfer/nothing-accounting-backend
 branch: main
