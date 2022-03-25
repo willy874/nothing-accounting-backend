@@ -54,7 +54,7 @@ jobs:
         run: docker build -t willy874/nothing-accounting-backend:${{steps.vars.outputs.sha}} .
 
       - name: run ansible script
-        uses: dawidd6/action-ansible-playbook@v2.5
+        uses: dawidd6/action-ansible-playbook@v2.5.0
         with:
           playbook: ansible/playbook.yaml
           key: ${{secrets.ssh_key}}
