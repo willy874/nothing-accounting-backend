@@ -60,4 +60,4 @@ jobs:
           key: ${{secrets.ssh_key}}
           options: |
             --inventory ansible/hosts.ini
-            --extra-vars docker_image_tag=${{steps.vars.output.sha}}
+            --extra-vars docker_image_tag=${{steps.vars.outputs.sha}}
