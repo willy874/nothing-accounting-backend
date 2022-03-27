@@ -34,7 +34,7 @@ jobs:
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_EMBEDS: '{"embeds": [{"image": {"url": "https://i.imgur.com/ZGPxFN2.jpg"}, "description": "*Hi!* **Wow!** I can __use__ hyperlinks [here](https://discord.com)."}]}'
+          DISCORD_EMBEDS: '{"embeds": [{"image": {"url": "https://w0.peakpx.com/wallpaper/730/248/HD-wallpaper-sci-fi-anime-girl-sword-profile-view-painting-anime.jpg"}}]}'
         uses: Ilshidur/action-discord@master
         with:
           args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed by ${{ github.actor }}'
