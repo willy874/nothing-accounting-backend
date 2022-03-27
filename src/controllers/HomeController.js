@@ -1,5 +1,3 @@
-const { PrismaClient } = require("@prisma/client");
-
 const Home = (req, res) => {
   res.send("first controller");
 };
