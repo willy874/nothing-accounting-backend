@@ -34,7 +34,7 @@ jobs:
       - name: set output
         id: embeds
         run: |
-           echo ::set-output name=json_var::'[{ "embeds": {"author": {"name": "kenny" }}}] '
+           echo ::set-output name=json_var::'[{ "embeds": {"author": {"name": "kenny", "url": "google.com", "icon_url": "https://w0.peakpx.com/wallpaper/730/248/HD-wallpaper-sci-fi-anime-girl-sword-profile-view-painting-anime.jpg}}}] '
 
       - name: Discord notification
         env:
