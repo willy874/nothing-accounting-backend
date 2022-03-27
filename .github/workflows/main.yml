@@ -30,10 +30,16 @@ jobs:
         shell: bash
         run: |
          echo "::set-output name=sha::$(git rev-parse HEAD)"
+         
+      - name: set output
+        id: embeds
+        run: |
+           echo ::set-output name=json_var::'[{ "embeds": {"author": {"name": "kenny" }}}] '
 
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_EMBEDS: ${{ steps.embeds.outputs.json_var }}
         uses: Ilshidur/action-discord@master
         with:
           args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed by ${{ github.actor }}'
