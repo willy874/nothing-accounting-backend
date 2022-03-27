@@ -30,27 +30,17 @@ jobs:
         shell: bash
         run: |
          echo "::set-output name=sha::$(git rev-parse HEAD)"
-         
-      - name: set output
-        id: embeds
-        run: |
-           echo ::set-output name=json_var::'[{ "embeds": {"author": {"name": "kenny", "url": "google.com", "icon_url": "https://w0.peakpx.com/wallpaper/730/248/HD-wallpaper-sci-fi-anime-girl-sword-profile-view-painting-anime.jpg}}}] '
 
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_EMBEDS: '[{"image": {"url": "https://i.imgur.com/ZGPxFN2.jpg"}}]'
+          DISCORD_EMBEDS: '{"embeds": [{"image": {"url": "https://i.imgur.com/ZGPxFN2.jpg"}}, {"fields": [{"name": "Cat",}]}]}'
         uses: Ilshidur/action-discord@master
         with:
           args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed by ${{ github.actor }}'
           
       - name: npm install
         run: npm install
-        
-      - name: Show GitHub context   
-        env: 
-          GITHUB_CONTEXT: ${{ toJson(github) }}   
-        run: echo "$GITHUB_CONTEXT"
 
       - name: lint
         run: npm run lint
