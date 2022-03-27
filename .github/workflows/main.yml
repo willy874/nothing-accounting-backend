@@ -36,7 +36,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed by {{ toJson(github).actor }}'
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed by ${{ github.actor }}'
           
       - name: npm install
         run: npm install
