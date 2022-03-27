@@ -31,6 +31,13 @@ jobs:
         run: |
          echo "::set-output name=sha::$(git rev-parse HEAD)"
 
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed by {{ toJson(github).actor }}'
+          
       - name: npm install
         run: npm install
         
@@ -64,12 +71,6 @@ jobs:
             --extra-vars docker_image_tag=${{steps.vars.outputs.sha}}
 
 
-      - name: Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed by {{ github.actor }}'
         
       - name: Discord notification
         if: ${{ failure() }}
