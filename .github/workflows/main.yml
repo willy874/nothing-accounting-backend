@@ -34,7 +34,7 @@ jobs:
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_EMBEDS: '[{"embeds":[{"image":{"url": "https://i.imgur.com/3G3xSwx.jpg"}}]}]'
+          DISCORD_EMBEDS: '[{"image":{"url": "https://i.imgur.com/3G3xSwx.jpg"}}]'
         uses: Ilshidur/action-discord@master
         with:
           args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed by ${{ github.actor }}'
