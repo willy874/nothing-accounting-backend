@@ -33,7 +33,12 @@ jobs:
 
       - name: npm install
         run: npm install
-      
+        
+      - name: Show GitHub context   
+        env: 
+          GITHUB_CONTEXT: ${{ toJson(github) }}   
+        run: echo "$GITHUB_CONTEXT" ```
+
       - name: lint
         run: npm run lint
 
