@@ -10,7 +10,6 @@ const items = [
 ];
 
 const checkRequirement = async () => {
-  //
   const category = await prisma.Category.findFirst({
     where: {
       id: 1,
