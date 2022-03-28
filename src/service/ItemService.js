@@ -11,7 +11,11 @@ class ItemService {
       data: {
         items: {
           create: itemArray,
-          categoryItem: itemArray,
+          categoryItem: {
+            create: {
+              itemArray,
+            },
+          },
         },
       },
     });
