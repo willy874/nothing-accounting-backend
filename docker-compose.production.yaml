@@ -4,7 +4,7 @@ services:
   backend:
     image: willy874/nothing-accounting-backend:$docker_image_tag
     command: >
-      sh -c "npx prisma migrate dev && npx prisma db seed && npm run server"
+      sh -c "npx prisma db push && npx prisma db seed && npm run server"
     ports:
       - "8080:8080"
     depends_on:

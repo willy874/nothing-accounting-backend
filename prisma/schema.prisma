@@ -42,7 +42,7 @@ model Item {
   transaction Transaction
   date DateTime
   memo String?
-  itemCategory ItemCategory[]
+  itemCategory ItemCategory?
 }
 
 model Category {

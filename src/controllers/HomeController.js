@@ -1,5 +1,5 @@
 const Home = (req, res) => {
-  res.send("first controller");
+  res.send("Hello first controller");
 };
 
 module.exports = {
