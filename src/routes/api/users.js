@@ -5,18 +5,12 @@ const IsAuthenticated = require("../../middleware/IsAuthenticated");
 
 const router = express.Router();
 
-/* GET users listing. */
-// router.get("/", (req, res, next) => {
-//   res.send("respond with a resource");
-// });
 
+router.get("", IsAuthenticated.jwtAuthenticated, UserController.getUsers);
 router.post("/create", UserController.createUser);
 router.post(
   "/login",
-  passport.authenticate("local"),
-  UserController.authenticateUser
+  UserController.loginUser
 );
-
-router.get("/users", IsAuthenticated.isAuthenticated, UserController.getUsers);
 
 module.exports = router;

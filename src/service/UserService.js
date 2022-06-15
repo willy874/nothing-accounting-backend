@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const validator = require("validator");
+const jwt = require('jsonwebtoken')
 const authUtils = require("../authentication/utils");
 
 const prisma = new PrismaClient();
@@ -11,10 +12,11 @@ class UserService {
     }
 
     const hashPassword = await authUtils.hashPassword(password);
-    await prisma.user.create({
+
+    let result = await prisma.user.create({
       data: {
         email,
-        password: hashPassword,
+        password: hashPassword
       },
     });
     return true;
@@ -32,6 +34,44 @@ class UserService {
       return true;
     }
     return false;
+  }
+
+  static async findUser(email, password) {
+    const user = await prisma.user.findFirst({
+      where: {
+        email
+      },
+    });
+    if (user) {
+      if (await authUtils.comparePassword(user.password, `${password}`)) {
+        return user;
+      } else {
+        return null
+      }
+    }
+    return null;
+  }
+
+  static async getUser(email) {
+    return await prisma.user.findFirst({
+      where: {
+        email
+      },
+    });
+  }
+
+  static createJwt(user) {
+    const payload = {
+      email: user.email,
+      name: user.name,
+      createdAt: user.createdAt
+    }
+
+    return jwt.sign(
+      payload,
+      process.env.SECRET_KEY,
+      { expiresIn: 3 * 60 * 60 * 1000 }
+    );
   }
 }
 

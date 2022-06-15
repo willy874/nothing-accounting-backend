@@ -15,7 +15,8 @@ const userMain = async () => {
   await Promise.all(
     users.map(async (user) => {
       const newUser = user;
-      newUser.password = await authUtils.hashPassword(user.password);
+      const hashPassword = await authUtils.hashPassword(user.password);
+      newUser.password = hashPassword;
       const existingUser = await prisma.User.findFirst({
         where: {
           email: user.email,
