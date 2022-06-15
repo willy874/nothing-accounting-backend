@@ -3,7 +3,8 @@ const bycrypt = require("bcrypt");
 
 const hashPassword = async (password) => {
   const salt = await bycrypt.genSalt(10);
-  return bycrypt.hash(password, salt);
+  const hashPassword = await bycrypt.hash(password, salt);
+  return hashPassword
 };
 
 const comparePassword = async (hashedPassword, password) =>

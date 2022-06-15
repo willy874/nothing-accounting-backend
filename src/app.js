@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const localPassport = require("./authentication/local");
 
+require('dotenv').config();
+
 const app = express();
 
 // view engine setup

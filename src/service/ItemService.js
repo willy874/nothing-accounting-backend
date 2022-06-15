@@ -21,12 +21,29 @@ class ItemService {
     });
   }
 
-  static async edit(itemId, userId) {
+  static getAllItem(userId) {
+    console.log('getAllItem')
+  }
+
+
+  static get(itemId) {
+    return prisma.Item.findFirst({
+      where: {
+        id: itemId,
+      },
+    });
+  }
+
+  static async edit(itemId, itemData, userId) {
     // const item = prisma.Item.findFirst({
     //   where: {
     //     id: itemId,
     //   },
     // });
+  }
+
+  static delete(itemId) {
+    console.log(itemId)
   }
 }
 

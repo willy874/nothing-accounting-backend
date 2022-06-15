@@ -4,7 +4,7 @@ services:
   backend:
     build: .
     command: >
-      sh -c "npx prisma migrate dev && npx prisma db seed && npm run watch"
+      sh -c "npx prisma migrate deploy && npx prisma db seed && npm run watch"
     ports:
       - "8080:8080"
     volumes:
